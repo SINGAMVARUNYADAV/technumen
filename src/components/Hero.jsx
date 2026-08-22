@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="relative max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl sm:text-4xl font-medium text-white tracking-tight">Careers</h1>
         </div>
-      </div>
+      </section>
       <div className="bg-[#f3f3f3] border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-[68px] flex items-center justify-between opacity-80">
           <span className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-[10px] font-bold text-[#193b73]">CMMI <span className="text-[#008080]">APPRAISED</span></span>
