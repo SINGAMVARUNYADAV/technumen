@@ -81,7 +81,7 @@ export default function AdminDashboard() {
           <h1 className="text-2xl font-bold text-[#17263d] mb-2">Admin sign in</h1>
           <p className="text-sm text-gray-500 mb-6">Review and manage candidate applications.</p>
           <label className="block text-sm font-semibold text-gray-600 mb-2" htmlFor="admin-password">Password</label>
-          <input id="admin-password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required autoFocus className="w-full px-3 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080]/30 focus:border-[#008080]" />
+          <input id="admin-password" type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required autoFocus className="w-full px-3 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080]/30 focus:border-[#008080]" />
           {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
           <button disabled={loading} className="w-full mt-6 py-3 bg-[#008080] hover:bg-[#006666] disabled:opacity-60 text-white font-semibold rounded-lg">{loading ? 'Signing in…' : 'Sign in'}</button>
           <a href="/" className="block text-center mt-5 text-sm text-[#008080] hover:underline">Back to careers site</a>
