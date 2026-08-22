@@ -10,6 +10,8 @@ export default function ApplyModal({ job, onClose }) {
     resume: null,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
   const modalRef = useRef(null);
 
   // Trap focus / close on Escape
@@ -30,9 +32,31 @@ export default function ApplyModal({ job, onClose }) {
     setForm((prev) => ({ ...prev, [name]: files ? files[0] : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jobTitle: job.title,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          linkedin: form.linkedin,
+          resumeName: form.resume?.name || '',
+        }),
+      });
+      if (!response.ok) throw new Error('Application could not be submitted');
+      setSubmitted(true);
+    } catch {
+      setError('We could not submit your application. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleBackdrop = (e) => {
@@ -204,6 +228,8 @@ export default function ApplyModal({ job, onClose }) {
               </p>
             </div>
 
+            {error && <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">{error}</p>}
+
             {/* Actions */}
             <div className="flex gap-3 pt-1">
               <button
@@ -215,9 +241,10 @@ export default function ApplyModal({ job, onClose }) {
               </button>
               <button
                 type="submit"
-                className="flex-1 py-3 bg-[#008080] hover:bg-[#006666] text-white font-semibold rounded-xl text-sm transition-colors shadow hover:shadow-[#008080]/30"
+                disabled={submitting}
+                className="flex-1 py-3 bg-[#008080] hover:bg-[#006666] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-colors shadow hover:shadow-[#008080]/30"
               >
-                Submit Application
+                {submitting ? 'Submitting…' : 'Submit Application'}
               </button>
             </div>
           </form>

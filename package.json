@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5000 --host 0.0.0.0",
+    "dev": "concurrently \"vite --port 5000 --host 0.0.0.0\" \"PORT=3001 node server.js\"",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,6 +12,8 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.0",
     "autoprefixer": "^10.5.4",
+    "concurrently": "^9.2.4",
+    "express": "^5.2.1",
     "postcss": "^8.5.26",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
