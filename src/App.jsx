@@ -4,8 +4,12 @@ import Hero from './components/Hero';
 import JobListings from './components/JobListings';
 import Footer from './components/Footer';
 import ApplyModal from './components/ApplyModal';
+import AdminDashboard from './components/AdminDashboard';
 
 export default function App() {
+  if (window.location.pathname === '/admin') {
+    return <AdminDashboard />;
+  }
   const [selectedJob, setSelectedJob] = useState(null);
 
   return (
