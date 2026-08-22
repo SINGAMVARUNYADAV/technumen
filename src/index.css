@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-teal-brand: #008080;
+  --color-teal-light: #00a0a0;
+  --color-teal-dark: #006666;
+  --color-navy-brand: #0A192F;
+  --color-navy-light: #112240;
+  --color-navy-lighter: #1e3a5f;
+  --font-family-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
